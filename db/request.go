@@ -27,7 +27,10 @@ func loadRequestMap() {
 	_requestMap := make(map[string]Request)
 
 	var requestList []Request
-	g.DB().Model(config.TableRequest).Scan(&requestList)
+	err := g.DB().Model(config.TableRequest).Scan(&requestList)
+	if err != nil {
+		panic(err)
+	}
 
 	for _, item := range requestList {
 
@@ -49,7 +52,7 @@ func loadRequestMap() {
 			ExecQueue string
 		}
 		var _ext *ext
-		g.DB().Model(config.TableRequestExt).Where(g.Map{
+		_ = g.DB().Model(config.TableRequestExt).Where(g.Map{
 			"version": item.Version,
 			"method":  item.Method,
 			"tag":     item.Tag,
