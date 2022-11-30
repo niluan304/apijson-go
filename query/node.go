@@ -61,7 +61,7 @@ type Node struct {
 
 	primaryTableKey string // 主查询表
 
-	total     int // 数据总条数
+	total     int64 // 数据总条数
 	needTotal bool
 }
 
@@ -199,7 +199,6 @@ func (n *Node) parse() {
 		}
 
 		var accessWhereCondition g.Map
-
 		setNodeRole(n, access.Name, n.role)
 
 		if n.role == consts.DENY {
@@ -218,7 +217,6 @@ func (n *Node) parse() {
 				n.err = gerror.New("无权限访问:" + tableKey + " by " + n.role)
 				return
 			}
-
 			accessWhereCondition = condition
 		}
 
@@ -233,7 +231,11 @@ func (n *Node) parse() {
 		// 查询条件
 		refKeyMap, conditionMap, ctrlMap := parseQueryNodeReq(n.req, n.isList)
 
-		n.sqlExecutor.ParseCtrl(ctrlMap)
+		err = n.sqlExecutor.ParseCtrl(ctrlMap)
+		if err != nil {
+			n.err = err
+			return
+		}
 
 		err = n.sqlExecutor.ParseCondition(conditionMap, true)
 		if err != nil {

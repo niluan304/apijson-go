@@ -66,7 +66,10 @@ func loadAccessMap() {
 
 	db := g.DB()
 
-	db.Model(config.TableAccess).Scan(&accessList)
+	err := db.Model(config.TableAccess).Scan(&accessList)
+	if err != nil {
+		panic(err)
+	}
 
 	type AccessExt struct {
 		RowKey    string
@@ -80,7 +83,10 @@ func loadAccessMap() {
 		}
 
 		var ext *AccessExt
-		db.Model(config.TableAccessExt).Where("table", access.Name).Scan(&ext)
+		err := db.Model(config.TableAccessExt).Where("table", access.Name).Scan(&ext)
+		if err != nil {
+			panic(err)
+		}
 		if ext != nil {
 			access.RowKey = ext.RowKey
 			access.FieldsGet = ext.FieldsGet

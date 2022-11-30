@@ -3,8 +3,8 @@ module github.com/glennliao/apijson-go
 go 1.18
 
 require (
-	github.com/gogf/gf/v2 v2.2.2
-	github.com/samber/lo v1.33.0
+	github.com/gogf/gf/v2 v2.2.5
+	github.com/samber/lo v1.36.0
 )
 
 require (
@@ -27,7 +27,7 @@ require (
 	go.opentelemetry.io/otel v1.7.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.7.0 // indirect
 	go.opentelemetry.io/otel/trace v1.7.0 // indirect
-	golang.org/x/exp v0.0.0-20221110155412-d0897a79cd37 // indirect
+	golang.org/x/exp v0.0.0-20221126150942-6ab00d035af9 // indirect
 	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
 	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/text v0.3.8-0.20211105212822-18b340fc7af2 // indirect

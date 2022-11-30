@@ -290,7 +290,7 @@ func (e *SqlExecutor) column() []string {
 	return fields
 }
 
-func (e *SqlExecutor) List(page int, count int, needTotal bool) (list []g.Map, total int, err error) {
+func (e *SqlExecutor) List(page int, count int, needTotal bool) (list []g.Map, total int64, err error) {
 
 	if e.WithEmptyResult {
 		return nil, 0, err

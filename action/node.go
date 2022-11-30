@@ -198,7 +198,7 @@ func (n *Node) checkReq() error {
 				return gerror.New("structure错误: 400, REFUSE为!时必须指定MUST" + n.Key)
 			}
 
-			for key, _ := range item {
+			for key := range item {
 				if !lo.Contains(n.structure.Must, key) {
 					return gerror.New("structure错误: 400, 不能包含" + n.Key + "." + key)
 				}
@@ -218,7 +218,7 @@ func (n *Node) checkReq() error {
 
 func (n *Node) reqUpdate() error {
 
-	for i, _ := range n.req {
+	for i := range n.req {
 		for key, updateVal := range n.structure.Update {
 
 			if strings.HasSuffix(key, consts.FunctionsKeySuffix) {
@@ -281,16 +281,14 @@ func (n *Node) do(ctx context.Context, method string, i int) (ret g.Map, err err
 	case consts.MethodPost:
 
 		var rowKeyVal g.Map
-		for i, _ := range n.Data {
+		for i := range n.Data {
 			rowKeyVal, err = rowKeyGen(ctx, n.TableName, n.Data[i])
 			if err != nil {
 				return nil, err
 			}
 
-			if rowKeyVal != nil {
-				for k, v := range rowKeyVal {
-					n.Data[i][k] = v
-				}
+			for k, v := range rowKeyVal {
+				n.Data[i][k] = v
 			}
 
 		}
@@ -309,10 +307,8 @@ func (n *Node) do(ctx context.Context, method string, i int) (ret g.Map, err err
 		if len(n.Data) > 0 { //多条插入时返回值已经应该无意义了
 
 			jsonStyle := config.GetJsonFieldStyle()
-			if rowKeyVal != nil {
-				for k, v := range rowKeyVal {
-					ret[jsonStyle(ctx, n.TableName, k)] = v
-				}
+			for k, v := range rowKeyVal {
+				ret[jsonStyle(ctx, n.TableName, k)] = v
 			}
 		}
 
@@ -371,7 +367,7 @@ func (n *Node) execute(ctx context.Context, method string) (g.Map, error) {
 		}
 		return ret, nil
 	} else {
-		for i, _ := range n.req {
+		for i := range n.req {
 			_, err = n.do(ctx, method, i)
 			if err != nil {
 				return nil, err
