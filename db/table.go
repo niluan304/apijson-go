@@ -44,7 +44,7 @@ func loadTableMeta() {
 		}
 
 		var columns []Column
-		for field, _ := range fields {
+		for field := range fields {
 			columns = append(columns, Column{Name: field})
 		}
 
