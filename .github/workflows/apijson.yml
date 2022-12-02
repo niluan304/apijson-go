@@ -87,7 +87,7 @@ jobs:
           go mod tidy
           cp config.yaml.example config.yaml
           GOOS=linux GOARCH=amd64 go build main.go
-          cd /tests
+          cd ./tests
           go test
 
       - name: Stop Apollo Containers

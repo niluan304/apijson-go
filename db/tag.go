@@ -19,7 +19,7 @@ func Insert(ctx context.Context, table string, data any) (int64, int64, error) {
 	}
 
 	count, err := ret.RowsAffected()
-	return id, count, nil
+	return id, count, err
 }
 
 func Update(ctx context.Context, table string, data g.Map, where g.Map) (int64, error) {

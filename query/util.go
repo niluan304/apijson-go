@@ -175,7 +175,7 @@ func analysisOrder(prerequisites [][]string) ([]string, error) {
 
 	var queue []string
 
-	for point, _ := range pointMap {
+	for point := range pointMap {
 		if inDeg[point] == 0 {
 			queue = append(queue, point)
 		}

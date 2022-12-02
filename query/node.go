@@ -641,12 +641,8 @@ func (n *Node) Result() (any, error) {
 			retMap := g.Map{}
 			for k, node := range n.children {
 				var err error
-				if strings.HasSuffix(k, "@") {
-					k = k[0 : len(k)-1]
-				}
-				if strings.HasSuffix(k, consts.FunctionsKeySuffix) {
-					k = k[0 : len(k)-2]
-				}
+				k = strings.TrimSuffix(k, "@")
+				k = strings.TrimSuffix(k, consts.FunctionsKeySuffix)
 
 				retMap[k], err = node.Result()
 				if node.Type == NodeTypeFunc && retMap[k] == nil {

@@ -34,10 +34,8 @@ func loadRequestMap() {
 
 	for _, item := range requestList {
 
-		tag := item.Tag
-		if strings.HasSuffix(tag, "[]") {
-			tag = tag[0 : len(tag)-2]
-		}
+		tag := strings.TrimSuffix(item.Tag, "[]")
+
 		if strings.ToLower(tag) != tag {
 			// 本身大写, 如果没有外层, 则套一层
 			if _, ok := item.Structure[tag]; !ok {
@@ -61,10 +59,7 @@ func loadRequestMap() {
 		if _ext != nil {
 			item.ExecQueue = strings.Split(_ext.ExecQueue, ",")
 		} else {
-			tag := item.Tag
-			if strings.HasSuffix(tag, "[]") {
-				tag = tag[0 : len(tag)-2]
-			}
+			tag := strings.TrimSuffix(item.Tag, "[]")
 			item.ExecQueue = strings.Split(tag, ",")
 		}
 
