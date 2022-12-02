@@ -34,7 +34,7 @@ type Action struct {
 
 	req g.Map
 
-	err error
+	//err error
 
 	children map[string]Node
 	keyNode  map[string]*Node

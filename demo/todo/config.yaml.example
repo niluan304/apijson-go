@@ -10,5 +10,5 @@ database:
   default:
     debug: true
     timezone: Asia/Shanghai
-    link: "mysql:root:yourpassword@tcp(127.0.0.1:3306)/my_apijson?charset=utf8mb4&parseTime=True&loc=Local"
+    link: "mysql:root:12345678@tcp(127.0.0.1:3306)/my_apijson?charset=utf8mb4&parseTime=True&loc=Local"
 

@@ -34,12 +34,6 @@ jobs:
       - uses: actions/setup-go@v3
       - uses: actions/checkout@v3
 
-      - name: Build Binary
-        run: |
-          echo "Building linux amd64 binary..."
-          cd demo/todo
-          GOOS=linux GOARCH=amd64 go build main.go
-
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:

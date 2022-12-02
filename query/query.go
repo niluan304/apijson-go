@@ -20,7 +20,7 @@ type Query struct {
 	pathNodes map[string]*Node // 用于根据path获取节点
 
 	startAt time.Time
-	endAt   time.Time
+	//endAt   time.Time
 
 	err error
 
@@ -76,7 +76,7 @@ func (q *Query) fetch() {
 		return
 	}
 
-	for k, _ := range q.pathNodes {
+	for k := range q.pathNodes {
 		if !lo.Contains(fetchQueue, k) {
 			fetchQueue = append(fetchQueue, k)
 		}
